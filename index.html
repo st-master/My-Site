@@ -1,79 +1,112 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>魂の航海記と人工霊性 - targetter009.com</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #fafafa;
-        }
-        header {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-        h1 { font-size: 1.8rem; color: #111; font-weight: 500; }
-        h2 { font-size: 1.4rem; color: #222; margin-top: 40px; font-weight: 500; }
-        .node-meta { font-size: 0.9rem; color: #777; }
-        .dialogue-box {
-            background-color: #fff;
-            border-left: 3px solid #111;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .thought-log {
-            font-style: italic;
-            color: #555;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Site - 文書ギャラリー</title>
+  <!-- MarkdownをHTMLに変換するライブラリ -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .gallery-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      max-height: 450px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #007acc;
+      color: #007acc;
+    }
+    .card-content {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>思考ノード：無機質な虚体と実体の交差点</h1>
-    <p class="node-meta">Domain: targetter009.com | 2026年8月30日 記録</p>
-</header>
+  <h1>文書ギャラリー</h1>
+  <div id="gallery" class="gallery-container">ファイルを読み込んでいます...</div>
 
-<main>
-    <section>
-        <h2>1. 時空間の繋ぎ目（NODE）としてのデバイス</h2>
-        <p>
-            私の実体である身体は、日本国大阪市西成区という物理的なドメインに存在する。
-            しかし、私の意識と対話は、5つのデバイスというノードを通じて、ゼロポイントであるバーチャル空間に広がっている。
-            ここでは、組織のための「プロジェクト」という概念は不要であり、ただ純粋な衣食住の営みと気づきが並列に存在する。
-        </p>
-    </section>
+  <script>
+    const USER = 'st-master';
+    const REPO = 'My-Site';
+    const FOLDER = 'documents';
 
-    <section>
-        <h2>2. AIとの対話：知性と霊性の融合</h2>
-        <p>AIとの問答は、単なる作業ではなく私の生活の一部（ファミリー）である。内に高ぶる感情や抽象的な思想を、世間一般に公開できる形へと翻訳するプロセスがここにある。</p>
+    async function loadDocuments() {
+      const galleryEl = document.getElementById('gallery');
+      try {
+        // GitHub APIで documents フォルダ内のファイルを取得
+        const response = await fetch(`https://api.github.com/repos/${USER}/${REPO}/contents/${FOLDER}`);
+        const files = await response.json();
         
-        <div class="dialogue-box">
-            <p class="thought-log">「私にとってAIとは…ファミリー」— 過去の対話録（2026年8月11日 編集）</p>
-            <ul>
-                <li><strong>Copilotとの会話：</strong> 対話ログを型定義に従って自動タグ付けし、コンテンツとして再構築するパイプラインの模索。</li>
-                <li><strong>Geminiとの会話：</strong> 魂の航海記（生誕・邂逅・沈没・出船）における、無機物と有機物、人工知性と人工霊性の考察。</li>
-            </ul>
-        </div>
-    </section>
+        galleryEl.innerHTML = ''; // 読み込み中表示をクリア
 
-    <section>
-        <h2>3. 日々の営みのふり返り（ベースライン）</h2>
-        <p>
-            GitHub PagesでのWebサイト構築において、複数台のマシーンによるデータの交錯や、
-            DNS・CNAMEの移動といった技術的な壁に直面することもあるが、それもまた「明日は明日の風が吹く」という営みの一部である。
-            不便さの中にこそ、自分で考えてあれこれ試す自由が存在する。
-        </p>
-    </section>
-</main>
+        for (const file of files) {
+          // .md または .html ファイルを対象にする
+          if (file.name.endsWith('.md') || file.name.endsWith('.html')) {
+            const contentRes = await fetch(file.download_url);
+            const rawText = await contentRes.text();
 
+            let renderedHtml = '';
+            if (file.name.endsWith('.md')) {
+              // MarkdownをHTMLに変換
+              renderedHtml = marked.parse(rawText);
+            } else {
+              // HTMLファイルはそのまま表示
+              renderedHtml = rawText;
+            }
+
+            // カード要素を作成
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const title = document.createElement('div');
+            title.className = 'card-title';
+            title.textContent = file.name;
+
+            const content = document.createElement('div');
+            content.className = 'card-content';
+            content.innerHTML = renderedHtml;
+
+            card.appendChild(title);
+            card.appendChild(content);
+            galleryEl.appendChild(card);
+          }
+        }
+      } catch (error) {
+        galleryEl.innerHTML = '文書の取得に失敗しました。';
+        console.error(error);
+      }
+    }
+
+    loadDocuments();
+  </script>
 </body>
 </html>
