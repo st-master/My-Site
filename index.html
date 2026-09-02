@@ -4,52 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Site - 文書ギャラリー</title>
+  <!-- MarkdownをHTMLに変換するライブラリ -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body {
-      font-family: sans-serif;
-      max-width: 1000px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 20px;
-      background-color: #f9f9f9;
+      padding: 30px 20px;
+      background-color: #fafafa;
       color: #333;
+      line-height: 1.7;
     }
-    h1 {
+    h1.site-title {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      color: #111;
     }
-    .gallery-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .card {
+    .document-card {
       border: 1px solid #e0e0e0;
       border-radius: 10px;
-      padding: 20px;
+      padding: 30px;
       background: #ffffff;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
     }
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    }
-    .card-title a {
-      font-size: 1.1rem;
-      font-weight: bold;
+    .document-card h1, .document-card h2, .document-card h3 {
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
       color: #007acc;
-      text-decoration: none;
-      word-break: break-all;
+      margin-top: 24px;
     }
-    .card-title a:hover {
-      text-decoration: underline;
+    .document-card code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .document-card pre {
+      background: #f4f4f4;
+      padding: 16px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    .document-card ul, .document-card ol {
+      padding-left: 24px;
     }
   </style>
 </head>
+
 <body>
 
-  <h1>文書ギャラリー</h1>
-  <div id="gallery" class="gallery-container">ファイルを読み込んでいます...</div>
+  <h1 class="site-title">文書ギャラリー</h1>
+  <div id="gallery">ファイルを読み込んでいます...</div>
 
   <script>
     const USER = 'st-master';
@@ -65,23 +73,21 @@
         galleryEl.innerHTML = '';
 
         for (const file of files) {
-          if (file.name.endsWith('.md') || file.name.endsWith('.html')) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            
-            const title = document.createElement('div');
-            title.className = 'card-title';
+          const card = document.createElement('div');
+          card.className = 'document-card';
 
-            // クリックで直接ファイルが開くリンクを作成
-            const link = document.createElement('a');
-            link.href = `./${FOLDER}/${file.name}`;
-            link.textContent = file.name;
-            link.target = '_blank'; // 新しいタブで開く場合（不要なら削除可）
+          const contentRes = await fetch(file.download_url);
+          const rawText = await contentRes.text();
 
-            title.appendChild(link);
-            card.appendChild(title);
-            galleryEl.appendChild(card);
+          if (file.name.endsWith('.md')) {
+            // MarkdownテキストをHTMLへレンダリング
+            card.innerHTML = marked.parse(rawText);
+          } else if (file.name.endsWith('.html')) {
+            // HTMLファイルはそのまま読み込んで描画
+            card.innerHTML = rawText;
           }
+
+          galleryEl.appendChild(card);
         }
       } catch (error) {
         galleryEl.innerHTML = '文書の取得に失敗しました。';
