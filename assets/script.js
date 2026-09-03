@@ -37,9 +37,12 @@ async function loadGallery(folderName, containerId) {
         mediaHtml = `<video controls src="${file.download_url}"></video>`;
       } else if (["mp3", "wav", "m4a", "ogg"].includes(ext)) {
         mediaHtml = `<div style="padding:20px; text-align:center;"><audio controls src="${file.download_url}"></audio></div>`;
-      } else if (ext === "md") {
-        mediaHtml = `<div style="padding:20px;"><a href="${file.download_url}" target="_blank">📄 ${file.name} を開く</a></div>`;
+      // 変更後: viewer.html を通して綺麗にレンダリング表示させる
+      else if (ext === "md") {
+        mediaHtml = `<div style="padding:20px; text-align:center;"><a href="viewer.html?file=${encodeURIComponent(file.name)}" style="font-weight:bold; color:#0366d6; text-decoration:none;">📄 ${file.name} を読む</a></div>`;
       }
+      // 変更前: rawデータ（テキスト）を直接開いていた
+      // mediaHtml = `<div style="padding:20px;"><a href="${file.download_url}" target="_blank">📄 ${file.name} を開く</a></div>`;
 
       card.innerHTML = `
         ${mediaHtml}
