@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 制作ログ & プロンプト集 | My-Site</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #008080;
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        .log-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .log-date {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .log-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 8px;
+        }
+
+        .prompt-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 12px 16px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .prompt-box header {
+            text-align: left;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            font-family: inherit;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🤖 Gemini 制作ログ & プロンプト集</h1>
+        <p>AI対話を通して誕生したアイデア、プロンプト、制作過程のアーカイブ</p>
+    </header>
+
+    <!-- サイトナビゲーション -->
+    <nav class="nav-links">
+        <a href="index.html">トップへ戻る</a>
+        <a href="images.html">画像</a>
+        <a href="videos.html">動画</a>
+        <a href="audio.html">音声</a>
+        <a href="docs.html">文書</a>
+    </nav>
+
+    <!-- ログエントリー 1 -->
+    <article class="log-card">
+        <div class="log-date">2026年9月4日</div>
+        <h2 class="log-title">🎬 うめきた巨大絵ワークショップ：Cityレトリート動画プロンプト制作</h2>
+        <p>うめきたの「グラングリーン大阪」での体験型アート展（近藤さやか氏・巨大絵ワークショップ）やカフェ「LOHE」、セイレーン姫の世界観を融合した「Cityレトリート動画」用の画像生成プロンプトを作成しました。</p>
+
+        <div class="prompt-box">
+            <header>カット1：現実と異次元の境界（うめきた未来都市とポータル）</header>
+            <pre>Cinematic wide angle shot of a futuristic Umekita cityscape with modern glass skyscrapers and lush green park in Osaka. In front of a stylish Starbucks cafe, a glowing, mystical glowing portal of emerald green and turquoise swirling energy emerges in the air, creating a portal to an otherworldly realm. City retreat vibe, hyper-realistic, photorealistic, 8k resolution, volumetric lighting, epic dramatic mood.</pre>
+        </div>
+
+        <div class="prompt-box">
+            <header>カット2：ワークショップとセイレーン姫（現実と夢の融合）</header>
+            <pre>Inside a futuristic art studio cafe in Umekita, children in green aprons are gathered around a table, painting a giant puzzle canvas with vibrant colors. Beside them stands a beautiful, ethereal Siren Princess with shimmering scales, glowing aquamarine hair, and a regal crown, gently guiding their hands with a glowing paintbrush. Magical sparkling dust and holographic light floating in the air. Dreamy, magical realism, cinematic lighting, ultra-detailed, 8k.</pre>
+        </div>
+
+        <div class="prompt-box">
+            <header>カット3：完成した巨大絵と深海未来都市（カフェに広がる深海の世界）</header>
+            <pre>Interior view of a quiet, modern coffee lounge in Umekita. On the main wall hangs a massive, breathtaking glowing mural painting depicting a futuristic underwater city where futuristic sleek submarines and sea creatures swim together around submerged skyscrapers. Soft cinematic lighting, peaceful city retreat atmosphere, deeply immersive, 8k, photorealistic, masterpiece.</pre>
+        </div>
+    </article>
+</div>
+
+</body>
+</html>
