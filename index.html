@@ -21,5 +21,41 @@
   <main style="text-align: center; margin-top: 50px;">
     <p>上のメニューから各ギャラリーを選択してください。</p>
   </main>
+
+  <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <video id="temp-video" controls width="640" autoplay muted style="max-width: 100%;">
+      <p>動画を読み込み中...</p>
+    </video>
+  </div>
+  
+  <script>
+    async function loadFirstVideo() {
+      const folderPath = './temporaries/';
+      try {
+        const response = await fetch(folderPath);
+        const text = await response.text();
+        
+        // HTML文字列からリンクを取得して動画ファイルを抽出
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const links = Array.from(doc.querySelectorAll('a'));
+        
+        // 対応する拡張子のファイルを検出
+        const videoLink = links.find(link => 
+          /\.(mp4|webm|ogg)$/i.test(link.getAttribute('href'))
+        );
+  
+        if (videoLink) {
+          const videoElement = document.getElementById('temp-video');
+          const videoUrl = new URL(videoLink.getAttribute('href'), new URL(folderPath, window.location.href)).href;
+          videoElement.src = videoUrl;
+        }
+      } catch (error) {
+        console.error('動画の読み込みに失敗しました:', error);
+      }
+    }
+  
+    loadFirstVideo();
+  </script>
 </body>
 </html>
