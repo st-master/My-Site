@@ -22,11 +22,20 @@
     <p>上のメニューから各ギャラリーを選択してください。</p>
   </main>
 
+  <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 20px 0;">
+    <!-- playsinline と muted を指定することでスマホ等の自動再生制限を回避します -->
+    <video id="temp-video" controls width="640" autoplay muted playsinline style="max-width: 100%;">
+      <source src="./temporaries/カオス、静寂、うめきたの錯覚.mp4" type="video/mp4">
+      お使いのブラウザは動画タグに対応していません。
+    </video>
+  </div>
+  <!--
   <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
     <video id="temp-video" controls width="640" autoplay muted style="max-width: 100%;">
       <p>動画を読み込み中...</p>
     </video>
   </div>
+  -->
   
   <script>
     async function loadFirstVideo() {
