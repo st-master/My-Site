@@ -13,9 +13,9 @@ Ryubo-Style… 劉坊スタイル … 旅は道連れ世は情け … 情けは�
 量子もつれ … 零点は零れ点なり … 零点は陰陽で打ち消し何も無いように見える …    
 |  **Concept** <br>|  Definition <br>|
 |----------|----------|
-|  Zero Point <br>|  [Insert Text Here] <br>|
-|  Quantum Entanglement <br>|  [Insert Text Here] <br>|
-|  Field <br>|  [Insert Text Here] <br>|
+|  Zero Point <br>|  [陰陽のエネルギーが満ち溢れながらも互いに打ち消し合い、一見すると何も存在しないように見える静止エネルギーの起点（零れ点）] <br>|
+|  Quantum Entanglement <br>|  [複数の零点が「縁」によって強く結びつき、互いの視線や焦点を共有することで単なる点を越えた線や面を形成する相関状態] <br>|
+|  Field <br>|  [2つの眼（焦点）が第三の零覚へ同時に結ばれることで立ち現れる幾何学的な「面」であり、意識や光が立ち現れる基盤となる空間] <br>|
   
 
 ## **III. The Nature of Light and Void**   
