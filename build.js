@@ -66,19 +66,15 @@ function build() {
     const date = meta.date || '日付不明';
     const category = meta.category || '未分類';
     const title = meta.title || path.basename(filePath, '.md');
-
     generatedCardsHtml += `
-<!-- Auto Generated Card: ${path.basename(filePath)} -->
-<article class="card">
-  <div class="card-header">
-    <span class="card-date">${date}</span>
-    <span class="card-category">${category}</span>
-  </div>
-  <h3 class="card-title">${title}</h3>
-  <div class="card-body">
-    ${bodyHtml}
-  </div>
-</article>
+    <!-- Auto Generated Card: ${path.basename(filePath)} -->
+    <article class="log-card">
+    <div class="log-date">${date} | ${category}</div>
+    <h2 class="log-title">${title}</h2>
+    <div class="log-body">
+        ${bodyHtml}
+    </div>
+    </article>
 `;
   });
 
