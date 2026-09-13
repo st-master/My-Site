@@ -13,8 +13,8 @@ def get_md_files(dir_path):
         for file in files:
             if file.endswith('.md'):
                 md_files.append(os.path.join(root, file))
-    return sorted(md_files)  # ソートして順番を統一
-
+    return sorted(md_files, reverse=True)  # ソートして順番を統一
+ 
 def parse_front_matter(content):
     match = re.search(r'^---\r?\n([\s\S]*?)\r?\n---', content)
     metadata = {'tags': []}
