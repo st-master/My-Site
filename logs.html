@@ -157,6 +157,24 @@
     <!-- ↓ ここに配置すると、ナビゲーション直下に自動生成カードが挿入されます -->
     <!-- AUTO-BUILD-START -->
 
+<!-- Auto Generated Card: 2026.0913.02.対話ログカード.md -->
+<article class="log-card">
+  <div class="log-date">2026.0913.02 | temporaries/AI・テクノロジー</div>
+  <h2 class="log-title">対話ログカード</h2>
+  <div class="log-tags"><span class="tag">#AI</span> <span class="tag">#開発メモ</span> <span class="tag">#Git</span> <span class="tag">#Python</span> <span class="tag">#YAML</span></div>
+  <div class="log-body">
+    <p><strong>Q. カード表示の降順（最新順）ソート</strong></p>
+対話ログカードを新しい日付順（降順）に並べ替えることは可能か？  
+<strong>A:</strong> 可能です。<code>build.py</code> 内の <code>get_md_files</code> 関数で <code>sorted(md_files, reverse=True)</code> を指定することで、ファイル名の日付が新しいカードが自動的に一番上へ配置されるよう改修しました。
+
+---
+
+<p><strong>Q. tagsプロパティのクラス化とフォルダー管理</strong></p>
+<code>tags</code> プロパティをオブジェクト指向でクラス化・カプセル化し、所定のフォルダー管理や自動振分けを行うことはできるか？  
+<strong>A:</strong> 可能です。<code>Tag</code> クラスや <code>TagManager</code> クラスを作成してタグのフォルダーパス保持やディレクトリ生成処理をカプセル化し、タグ別の自動フォルダー書き出しやカード分類を行う設計案を提示しました。
+  </div>
+</article>
+
 <!-- Auto Generated Card: 2026.0913.01.対話ログカード.md -->
 <article class="log-card">
   <div class="log-date">2026.0913.01 | temporaries/AI・テクノロジー</div>
