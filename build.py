@@ -36,4 +36,3 @@ class TagManager:
             # 各タグフォルダー内に「AI.html」や「Git.html」などの一覧カード群を出力
             # （あるいはシンボリックリンクやファイルコピーで物理管理）
             print(f"📁 フォルダー [{tag_name}] 内に {len(cards)} 件のカードを管理・出力しました。")
-            
