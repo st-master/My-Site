@@ -13,18 +13,37 @@ def get_md_files(dir_path):
         for file in files:
             if file.endswith('.md'):
                 md_files.append(os.path.join(root, file))
-    return md_files
+    return sorted(md_files)  # ソートして順番を統一
 
 def parse_front_matter(content):
     match = re.search(r'^---\r?\n([\s\S]*?)\r?\n---', content)
-    metadata = {}
+    metadata = {'tags': []}
     if match:
         lines = match.group(1).split('\n')
+        current_key = None
         for line in lines:
-            if ':' in line:
+            stripped = line.strip()
+            if not stripped:
+                continue
+            
+            # リスト要素（tagsなど）のパース
+            if stripped.startswith('-') and current_key == 'tags':
+                val = stripped.lstrip('-').strip().strip('"\'')
+                if val:
+                    metadata['tags'].append(val)
+            elif ':' in line:
                 key, val = line.split(':', 1)
-                metadata[key.strip()] = val.strip().strip('"\'')
+                current_key = key.strip()
+                val_clean = val.strip().strip('"\'')
+                if current_key != 'tags':
+                    metadata[current_key] = val_clean
     return metadata
+
+def generate_tags_html(tags):
+    if not tags:
+        return ""
+    tags_span = "".join([f'<span class="tag">#{tag}</span> ' for tag in tags])
+    return f'<div class="log-tags">{tags_span.strip()}</div>'
 
 def parse_body(content):
     body = re.sub(r'^---\r?\n[\s\S]*?\r?\n---', '', content).strip()
@@ -52,12 +71,14 @@ def build():
         date = meta.get('date', '日付不明')
         category = meta.get('category', '未分類')
         title = meta.get('title', os.path.basename(file_path))
+        tags_html = generate_tags_html(meta.get('tags', []))
 
         cards_html += f"""
 <!-- Auto Generated Card: {os.path.basename(file_path)} -->
 <article class="log-card">
   <div class="log-date">{date} | {category}</div>
   <h2 class="log-title">{title}</h2>
+  {tags_html}
   <div class="log-body">
     {body_html}
   </div>
@@ -79,10 +100,9 @@ def build():
         new_content = re.sub(pattern, f"{start_marker}\n{cards_html}\n{end_marker}", logs_content)
         with open(logs_html_path, 'w', encoding='utf-8') as f:
             f.write(new_content)
-        print("✅ Pythonで logs.html にカードを自動反映しました！")
+        print("✅ Pythonで logs.html にカードとタグを自動反映しました！")
     else:
         print("⚠️ AUTO-BUILD マーカーが見つかりません。")
 
 if __name__ == '__main__':
     build()
-    

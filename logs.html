@@ -109,6 +109,32 @@
             margin: 0;
             font-family: inherit;
         }
+
+        /* タグ全体の容器 */
+        .log-tags {
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        /* 個々のタグのデザイン */
+        .tag {
+            display: inline-block;
+            background-color: #e6f2f2;     /* ほんのり青緑がかった薄い背景色 */
+            color: var(--accent-color);    /* 文字色はサイトのアクセントカラー */
+            padding: 3px 10px;             /* 上下左右の余白 */
+            border-radius: 12px;           /* 角を丸くする（カプセル型） */
+            font-size: 0.85rem;            /* 小さめの文字サイズ */
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        /* ホバー時の効果（お好みで） */
+        .tag:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -135,6 +161,7 @@
 <article class="log-card">
   <div class="log-date">2026.0912.01 | temporaries/AI・テクノロジー</div>
   <h2 class="log-title">対話ログカード</h2>
+  
   <div class="log-body">
     <p><strong>Q. 動画一覧の整理</strong></p>
 「動画ギャラリー」ページの動画ファイル20件（ファイル名と再生時間）を一覧表に整理して提示しました。
@@ -150,6 +177,30 @@
 <p><strong>Q. カード型Markdown化とメタデータ・命名ルールの策定</strong></p>
 対話ログをカード型のMarkdownにし、フォルダ階層のカテゴリやファイル名ルールを追加できるか？  
 <strong>A:</strong> フロントメタデータに <code>date: 2026.0912.01</code> および <code>category: temporaries/AI・テクノロジー</code>（フォルダ階層）を付与するルールを策定しました。また、ポータルサイトでの表示順（ソート）を整えるため、ファイル命名規則を <code>[date].[title].md</code>（例: <code>2026.0912.01.対話ログカード.md</code>）に決定しました。
+  </div>
+</article>
+
+<!-- Auto Generated Card: 2026.0913.01.対話ログカード.md -->
+<article class="log-card">
+  <div class="log-date">2026.0913.01 | temporaries/AI・テクノロジー</div>
+  <h2 class="log-title">対話ログカード</h2>
+  <div class="log-tags"><span class="tag">#AI</span> <span class="tag">#開発メモ</span> <span class="tag">#Git</span> <span class="tag">#Python</span></div>
+  <div class="log-body">
+    <p><strong>Q. tagsプロパティの活用と位置づけ</strong></p>
+<code>tags</code> をフォルダ（<code>category</code>）と同じような分類手段として使うことは可能か？  
+<strong>A:</strong> 可能です。<code>category</code>（単一の物理フォルダ）と <code>tags</code>（複数の横断的テーマ）を組み合わせることで、より柔軟な分類ができます。
+
+---
+
+<p><strong>Q. build.pyによるtagsのHTML自動変換</strong></p>
+<code>build.py</code> が仲立ちして <code><div class="log-tags"><span class="tag">#AI</span>...</div></code> のようなHTMLへ自動変換できるか？  
+<strong>A:</strong> 可能です。<code>parse_front_matter</code> で <code>tags</code> を取得し、<code>generate_tags_html</code> 関数でカプセル型のHTMLタグへ自動変換してカード内へ埋め込むスクリプト拡張案を提示しました。
+
+---
+
+<p><strong>Q. タグのCSSデザイン調整</strong></p>
+CSSで <code>.tag</code> に背景色や角丸をつけたデザインの仕上がりイメージは？  
+<strong>A:</strong> <code>border-radius: 12px</code> で角を丸くし、薄い青緑（<code>#e6f2f2</code>）の背景色を敷くことで、視認性の高い上品なバッジ風デザインを作成できるCSSコードを提示しました。
   </div>
 </article>
 
